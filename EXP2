@@ -9,7 +9,6 @@ y = zeros(numUsers, 1000);
 for symIndex = 1:size(dataSymbols,2)
  x = sqrt(Ptx) * dataSymbols(:, symIndex);
  for userIndex = 1:numUsers
-
  end
 end
 noisePower = Ptx / (10^(SNR_dB/10));
