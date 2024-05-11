@@ -1,0 +1,10 @@
+num_transmit_antennas = 8;
+num_receive_antennas = 8;
+num_symbols = 1000; % Number of training symbols
+SNR_dB = 20;
+H_true = (randn(num_receive_antennas, num_transmit_antennas) + 1i *randn(num_receive_antennas, num_transmit_antennas)) / sqrt(2);
+X_train = (randn(num_transmit_antennas, num_symbols) + 1i * randn(num_transmit_antennas,num_symbols)) / sqrt(2);
+Y_train = H_true * X_train + sqrt(10^(-SNR_dB/10)) * (randn(num_receive_antennas,num_symbols) + 1i * randn(num_receive_antennas, num_symbols));
+H_est = Y_train * pinv(X_train);
+estimation_error = norm(H_true - H_est, 'fro') / norm(H_true, 'fro');
+disp(['Estimation error: ', num2str(estimation_error)]);
