@@ -1,0 +1,24 @@
+numCells = 3;
+numUsersPerCell = 5;
+numAntennas = 2;
+channelGains = randn(numCells, numUsersPerCell, numAntennas);
+precodedSignal = zeros(numCells, numUsersPerCell, numAntennas);
+for i = 1:numCells
+ for j = 1:numUsersPerCell
+ for k = 1:numAntennas
+ precodedSignal(i, j, k) = channelGains(i, j, k);
+ end
+ end
+end
+transmittedSignal = precodedSignal;
+estimatedChannelGains = transmittedSignal;
+decodedSignal = zeros(numCells, numUsersPerCell, numAntennas);
+for i = 1:numCells
+ for j = 1:numUsersPerCell
+ for k = 1:numAntennas
+ decodedSignal(i, j, k) = estimatedChannelGains(i, j, k);
+ end
+ end
+end
+receivedData = decodedSignal;
+disp(receivedData); 

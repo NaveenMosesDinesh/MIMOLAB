@@ -1,0 +1,8 @@
+numAntennas = 4;
+numUsers = 8;
+H = (randn(numAntennas, numUsers) + 1i*randn(numAntennas, numUsers))/sqrt(2);
+numRFChains = 8;
+F = (randn(numAntennas, numRFChains) + 1i*randn(numAntennas, numRFChains))/sqrt(2);
+W = (randn(numRFChains, numUsers) + 1i*randn(numRFChains, numUsers))/sqrt(2);
+X = F*W;
+disp(X); 

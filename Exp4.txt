@@ -1,0 +1,15 @@
+numUsers = 3;
+numAntennas = 2;
+numSubcarriers = 3;
+numSymbols = 3;
+channelGains = randn(numUsers, numAntennas);
+dataSymbols = randi([0, 1], numUsers, numSubcarriers, numSymbols);
+receivedSignal = zeros(numAntennas, numSubcarriers, numSymbols);
+for s = 1:numSymbols
+ for u = 1:numUsers
+ precodingMatrix = channelGains(u, :).';
+ precodedSymbols = precodingMatrix * dataSymbols(u, :, s);
+ receivedSignal(:, :, s) = receivedSignal(:, :, s) + precodedSymbols;
+ end
+end
+disp(receivedSignal); 

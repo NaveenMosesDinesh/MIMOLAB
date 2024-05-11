@@ -1,0 +1,23 @@
+numAntennasBS = 64; 
+numUsers = 8;
+SNR_dB = 20;
+Ptx = 1;
+% Generate random channel coefficients (complex Gaussian)
+H = (randn(numAntennasBS, numUsers) + 1i * randn(numAntennasBS, numUsers)) / sqrt(2);
+dataSymbols = randi([0,1], numUsers, 1000);
+y = zeros(numUsers, 1000);
+for symIndex = 1:size(dataSymbols,2)
+ x = sqrt(Ptx) * dataSymbols(:, symIndex);
+ for userIndex = 1:numUsers
+
+ end
+end
+noisePower = Ptx / (10^(SNR_dB/10));
+SINR = abs(H' * H).^2 * Ptx / noisePower;
+disp('SINR for each user:');
+disp(SINR);
+figure;
+histogram(10 * log10(SINR), 'Normalization', 'probability');
+xlabel('SINR (dB)');
+ylabel('Probability');
+title('SINR Distribution'); 
